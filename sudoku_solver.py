@@ -24,6 +24,6 @@ class Sudoku:
                             self._matrix[i][j] = '.' # otherwise, we set the current cell to empty (backtrack)
                         if num == 9: # if we tried all numbers for this cell and still didn't solve it,
                             return False # then there is no solution and we need to backtrack to make changes in earlier cells
-        return True # we are out of boundaries which means that we placed numbers on all cells and that the configuration is legal
+        return False if any(self._matrix[i][j] == '.' for i in range(self.BOARD_SIZE) for j in range(self.BOARD_SIZE)) else True #return True if we are out of boundaries which means that we placed numbers on all cells and that the configuration is legal
 
 

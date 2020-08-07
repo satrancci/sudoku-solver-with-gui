@@ -1,3 +1,4 @@
+from copy import deepcopy
 
 class Sudoku:
 
@@ -6,12 +7,17 @@ class Sudoku:
     def __init__(self, matrix):
         self._matrix = matrix
     
+    ####################### Methods that solve sudoku ############################
+
+    def is_full(self):
+        return False if any(self._matrix[i][j] == '.' for i in range(self.BOARD_SIZE) for j in range(self.BOARD_SIZE)) else True
+
     def is_valid(self, x, y, num):
         for i in range(self.BOARD_SIZE):
             if self._matrix[x][i] == num or self._matrix[i][y] == num or self._matrix[3*(x//3)+i//3][3*(y//3)+i%3] == num:
                 return False
         return True
-
+    
     def solve(self):
         for i in range(self.BOARD_SIZE):
             for j in range(self.BOARD_SIZE):
@@ -24,6 +30,23 @@ class Sudoku:
                             self._matrix[i][j] = '.' # otherwise, we set the current cell to empty (backtrack)
                         if num == 9: # if we tried all numbers for this cell and still didn't solve it,
                             return False # then there is no solution and we need to backtrack to make changes in earlier cells
-        return False if any(self._matrix[i][j] == '.' for i in range(self.BOARD_SIZE) for j in range(self.BOARD_SIZE)) else True #return True if we are out of boundaries which means that we placed numbers on all cells and that the configuration is legal
 
+        return self.is_full()
 
+    #################### Methods that facilitate GUI implementation ################################
+
+    def get_cell(self, x, y):
+        return self._matrix[x][y]
+    
+    def place_cell(self, x, y, num):
+        self._matrix[x][y] = num
+
+    def remove_cell(self, x, y):
+        self._matrix[x][y] = '.'
+
+    def reset_board(self, matrix):
+        self._matrix = matrix
+    
+    def make_backup(self):
+        matrix = deepcopy(self._matrix)
+        return matrix

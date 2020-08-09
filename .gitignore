@@ -1,4 +1,6 @@
 *
+!/readme-screenshots/
+!readme-screenshots/*
 !README.md
 !sudoku_solver.py
 !sudoku_gui.py

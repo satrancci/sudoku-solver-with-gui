@@ -15,7 +15,7 @@ The hints are provided in the command line. In order to play a move, click on th
 
   In order to clear a cell, click on button `d` on your keyboard and then click on the cell that you want clear.
 
-- If a move is legal, but the position cannot be solved from the current configuration, the number that we have just placed will again be marked as red and the corresponding message will be displayed in the commaned line:
+- If a move is legal, but the position cannot be solved from the current configuration, the number that we have just placed will again be marked as red and the corresponding message will be displayed in the command line:
 
   <img src="readme/../readme-screenshots/impossible_board.png" alt="Impossible move board" width="250"/>
   </br></br>
